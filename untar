@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ $# -le 1 ] || [ $1 = "-h" ] 
+then
+        echo "This is the help section of the program:"
+        echo "usage: $0 <options> <filename-in> <filename-out(optional argument)>"
+        echo " "
+        echo " "
+        echo "OPTIONS:"
+        echo "1) extract --> extracts all contents of a tar file to current directory"
+        echo "2) extractto --> extracts all contents of a tar file to specified directory ==> $0 extracto <name of new directory> <tarfile to extract>"
+        echo "3) read --> reads all the contents of a tar file"
+        echo "4) create --> create a tar archive ==> $0 create <name of new tar archive> <name of file to compress>"
+
+elif [ $1 = "extract" ]
+then
+        sudo tar -xvf $2
+elif [ $1 = "extractto" ]
+then
+        sudo mkdir $2 
+        sudo tar -xvf $3 -C $2
+elif [ $1 = "read" ]
+then
+        sudo tar -tvf $2
+elif [ $1 = "create" ]
+then
+        sudo tar cvzf $2 $3
+fi
+
